@@ -67,7 +67,8 @@ jobs:
             retention-days: 5
 
     docker:
-      name: Docker
+      permissions:
+        packages: write
       runs-on: ubuntu-latest
       steps:
       - name: Checkout Repository
