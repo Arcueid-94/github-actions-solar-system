@@ -77,12 +77,12 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: 'Arcueid-94'
-          password: 'GITHUB_TOKEN'
+          username: '${{ github.repository_owner }}'
+          password: '${{ secrets.GITHUB_TOKEN }}'
       
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: ghcr.io/Arcueid-94/solar-system:{githubSHA}
+          tags: 'ghcr.io/${{ github.repository_owner }}/solar-system:${{ github.sha }}''
                   
