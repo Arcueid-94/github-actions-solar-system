@@ -65,3 +65,24 @@ jobs:
             name: Code-Coverage-Result
             path: coverage
             retention-days: 5
+
+    docker:
+      name: Docker
+      runs-on: ubuntu-latest
+      steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: 'Arcueid-94'
+          password: 'GITHUB_TOKEN'
+      
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          tags: ghcr.io/Arcueid-94/solar-system:{githubSHA}
+                  
